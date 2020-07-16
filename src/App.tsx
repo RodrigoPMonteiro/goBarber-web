@@ -4,16 +4,15 @@ import GlobalStyle from './styles/global';
 // como ainda nao tem rotas, importa a Pagina SignIn direto no App.tsx
 import SignIn from './pages/SignIn';
 // import SignUp from './pages/SignUp';
-import { AuthProvider } from './hooks/AuthContext';
-import ToastContainer from './components/ToastContainer';
+import { AuthProvider } from './hooks/auth';
+
+import AppProvider from './hooks';
 
 const App: React.FC = () => (
   <>
-    <AuthProvider>
+    <AppProvider>
       <SignIn />
-    </AuthProvider>
-
-    <ToastContainer />
+    </AppProvider>
 
     <GlobalStyle />
   </>

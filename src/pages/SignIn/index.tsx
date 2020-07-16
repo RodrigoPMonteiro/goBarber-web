@@ -11,7 +11,8 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 import getValidationErrors from '../../utils/getValidationErrors';
-import { useAuth } from '../../hooks/AuthContext';
+import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 
 interface SignInFormData {
   email: string;
@@ -22,6 +23,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const { signIn } = useAuth(); // useContext(AuthContext);
+  const { addToast } = useToast();
 
   // console.log(user);
 
@@ -39,7 +41,7 @@ const SignIn: React.FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
-        signIn({
+        await signIn({
           email: data.email,
           password: data.password,
         });
@@ -51,9 +53,10 @@ const SignIn: React.FC = () => {
         }
 
         // disparar um toast (mensagem)
+        addToast();
       }
     },
-    [signIn],
+    [signIn, addToast],
   );
 
   return (
