@@ -7,12 +7,14 @@ import {
   FiInfo,
   FiXCircle,
 } from 'react-icons/fi';
-import { Container } from './styles';
-
 import { ToastMessage, useToast } from '../../../hooks/toast';
+
+import { Container } from './styles';
 
 interface ToastProps {
   message: ToastMessage;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  style: object;
 }
 
 const icons = {
@@ -21,7 +23,7 @@ const icons = {
   error: <FiAlertCircle size={24} />,
 };
 
-const Toast: React.FC<ToastProps> = ({ message }) => {
+const Toast: React.FC<ToastProps> = ({ message, style }) => {
   const { removeToast } = useToast();
 
   useEffect(() => {
@@ -35,7 +37,11 @@ const Toast: React.FC<ToastProps> = ({ message }) => {
   }, [removeToast, message.id]);
 
   return (
-    <Container type={message.type} hasDescription={!!message.description}>
+    <Container
+      type={message.type}
+      hasDescription={!!message.description}
+      style={style}
+    >
       {icons[message.type || 'info']}
 
       <div>
