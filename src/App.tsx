@@ -1,21 +1,20 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import GlobalStyle from './styles/global';
-// como ainda nao tem rotas, importa a Pagina SignIn direto no App.tsx
-import SignIn from './pages/SignIn';
-// import SignUp from './pages/SignUp';
-// import { AuthProvider } from './hooks/auth';
 
 import AppProvider from './hooks';
 
+import Routes from './routes';
+
 const App: React.FC = () => (
-  <>
+  <Router>
     <AppProvider>
-      <SignIn />
+      <Routes />
     </AppProvider>
 
     <GlobalStyle />
-  </>
+  </Router>
 );
 
 export default App;
